@@ -8,13 +8,15 @@
 
 ---
 
-#### Pipeline description [TODO]
-
----
-
 #### Model description [TODO]
 
 ![](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/bert_sent_diagram.png?raw=true)
+
+---
+
+#### Pipeline description [TODO]
+
+![](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/tfx_diagram.png?raw=true)
 
 ---
 
