@@ -1,3 +1,3 @@
 ### Google Colab pipeline
 
-![](https://blog.education-ecosystem.com/wp-content/uploads/2021/01/1_Lad06lrjlU9UZgSTHUoyfA-1280x720.png)
+![](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/colab_icon.png?raw=true)
