@@ -51,3 +51,7 @@ The end-to-end [TFX](https://www.tensorflow.org/tfx) pipeline will cover most of
 For the modeling part, we are going to use the [BERT](https://github.com/google-research/bert) model, for better performance we are using [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning), this means that we are using a model that was pre-trained on another task (usually a task that is more generic or similar), from the pre-trained model we will use the layers until the output of the embedding, to be more specific only the output from the `CLS` token, shown in the image below, then we add a classifier layer at the top, this classifier layer will be responsible for classifying the input text as being `positive` or `negative`, this task is also known as sentiment analysis, and is very common in natural language processing.
 
 <img src="https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/bert_sent_diagram.png?raw=true" width="400" height="250">
+
+---
+
+#### Data description `TODO`
