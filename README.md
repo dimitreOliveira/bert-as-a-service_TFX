@@ -12,39 +12,27 @@
 - Notebook (Google Colab)
   - BERT from TF HUB [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(TF_HUB).ipynb)
   - BERT from HuggingFace [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(HuggingFace).ipynb)
-- Local (AirFlow) [TODO]
-- GCP (KubeFlow) [TODO]
+- Local (AirFlow) `TODO`
+- GCP (KubeFlow) `TODO`
 
 ---
 
-#### Pipeline description [TODO]
+#### Pipeline description `TODO`
 
-<img src="https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/tfx_diagram.png?raw=true" width="1000" height="400">
+<img src="https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/tfx_diagram.png?raw=true" width="1000" height="300">
 
-The end-to-end [TFX](https://www.tensorflow.org/tfx) pipeline will cover most of the main areas of a machine learning solution, explained below, this repository aims to provide different options for managing the pipeline, this will be done using orchestrators, the orchestrators covered will be [AirFlow](https://airflow.apache.org/), [KubeFlow](https://www.kubeflow.org/) and an interactive option that can be used at Google Colab for demonstration purposes.
-
-Brief text with pipeline description (talk about orchestrators)
+The end-to-end [TFX](https://www.tensorflow.org/tfx) pipeline will cover most of the main areas of a machine learning solution, from data ingestion and validation to model training and serving, those steps are further described below, this repository also aims to provide different options for managing the pipeline, this will be done using orchestrators, the orchestrators covered will be [AirFlow](https://airflow.apache.org/), [KubeFlow](https://www.kubeflow.org/) and an interactive option that can be used at Google Colab for demonstration purposes.
 
 - ExampleGen is the initial input component of a pipeline that ingests and optionally splits the input dataset.
-  - 
 - StatisticsGen calculates statistics for the dataset.
-  - 
 - SchemaGen examines the statistics and creates a data schema.
-  - 
 - ExampleValidator looks for anomalies and missing values in the dataset.
-  - 
 - Transform performs feature engineering on the dataset.
-  - 
 - Trainer trains the model.
-  - 
 - Tuner tunes the hyperparameters of the model.
-  - 
 - Evaluator performs deep analysis of the training results and helps you validate your exported models, ensuring that they are "good enough" to be pushed to production.
-  - 
 - InfraValidator checks the model is actually servable from the infrastructure, and prevents bad model from being pushed.
-  - 
 - Pusher deploys the model on a serving infrastructure.
-  - 
 
 ---
 
@@ -56,9 +44,9 @@ For the modeling part, we are going to use the [BERT](https://github.com/google-
 
 ---
 
-### References
+### References:
 
-### TODO
+### TODO list:
 - Experiment with data from different sources and formats (e.g. `CSV`, `TXT`, and `TFRecord`).
 - Store and load data using `GCS` to enable training with `TPU`.
 - Add more features to the data (e.g. length, is_question, and word_count), to improve `StatisticsGen` and `Evaluator` outputs.
