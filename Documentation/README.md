@@ -1,6 +1,7 @@
 ### References:
 - [TFX homepage](https://www.tensorflow.org/tfx)
 - [Faster TensorFlow models in Hugging Face Transformers](https://huggingface.co/blog/tf-serving?utm_campaign=Hugging%2BFace&utm_medium=email&utm_source=Hugging_Face_7)
+
 ---
 
 ### TODO list:
@@ -11,3 +12,5 @@
 - Develop a small application to serve and consume the deployed model.
 - Look into the possibilities to add unity testes as part of the pipeline.
 - Experiment with custom `TFX` components.
+- Experiment with custom HP Tunner component.
+- Experiment with custom `BulkInfer` component.
