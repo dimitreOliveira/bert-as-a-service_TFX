@@ -4,7 +4,7 @@
 
 ## BERT as a service
 
-#### This repository is designed to demonstrate a simple yet complete machine learning solution that uses a [BERT](https://github.com/google-research/bert) model for text sentiment classification using a [TensorFlow Extended](https://www.tensorflow.org/tfx) end-to-end pipeline, covering steps from data ingestion until model serving, and making use of some best practice of MLOps domain.
+#### This repository is designed to demonstrate a simple yet complete machine learning solution that uses a [BERT](https://github.com/google-research/bert) model for text sentiment analysis using a [TensorFlow Extended](https://www.tensorflow.org/tfx) end-to-end pipeline, covering steps from data ingestion until model serving, and making use of some best practice from the [MLOps](https://en.wikipedia.org/wiki/MLOps) domain.
 
 ---
 
