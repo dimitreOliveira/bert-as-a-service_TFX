@@ -17,22 +17,32 @@
 
 ---
 
-#### Pipeline description `TODO`
+#### Pipeline description
 
 <img src="https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/tfx_diagram.png?raw=true" width="1000" height="300">
 
 The end-to-end [TFX](https://www.tensorflow.org/tfx) pipeline will cover most of the main areas of a machine learning solution, from data ingestion and validation to model training and serving, those steps are further described below, this repository also aims to provide different options for managing the pipeline, this will be done using orchestrators, the orchestrators covered will be [AirFlow](https://airflow.apache.org/), [KubeFlow](https://www.kubeflow.org/) and an interactive option that can be used at Google Colab for demonstration purposes.
 
-- ExampleGen is the initial input component of a pipeline that ingests and optionally splits the input dataset.
-- StatisticsGen calculates statistics for the dataset.
-- SchemaGen examines the statistics and creates a data schema.
-- ExampleValidator looks for anomalies and missing values in the dataset.
-- Transform performs feature engineering on the dataset.
-- Trainer trains the model.
-- Tuner tunes the hyperparameters of the model.
-- Evaluator performs deep analysis of the training results and helps you validate your exported models, ensuring that they are "good enough" to be pushed to production.
-- InfraValidator checks the model is actually servable from the infrastructure, and prevents bad model from being pushed.
-- Pusher deploys the model on a serving infrastructure.
+- `ExampleGen` is the initial input component of a pipeline that ingests and optionally splits the input dataset.
+  - `TODO` add description
+- `StatisticsGen` calculates statistics for the dataset.
+  - `TODO` add description
+- `SchemaGen` examines the statistics and creates a data schema.
+  - `TODO` add description
+- `ExampleValidator` looks for anomalies and missing values in the dataset.
+  - `TODO` add description
+- `Transform` performs feature engineering on the dataset.
+  - `TODO` add description
+- `Trainer` trains the model.
+  - `TODO` add description
+- `Tuner` tunes the hyperparameters of the model.
+  - `TODO` add description
+- `Evaluator` performs deep analysis of the training results and helps you validate your exported models, ensuring that they are "good enough" to be pushed to production.
+  - `TODO` add description
+- `InfraValidator` checks the model is actually servable from the infrastructure, and prevents bad model from being pushed.
+  - `TODO` add description
+- `Pusher` deploys the model on a serving infrastructure.
+  - `TODO` add description
 
 ---
 
