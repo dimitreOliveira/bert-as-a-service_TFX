@@ -1,4 +1,4 @@
-<img src="https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/colab_icon.png?raw=true" width="800" height="200">
+<img src="https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Assets/colab_icon.png?raw=true" width="600" height="200">
 
 ### Google Colab pipeline
 
