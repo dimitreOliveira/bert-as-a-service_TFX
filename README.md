@@ -13,8 +13,8 @@
 ### Content
 - Pipelines
   - Notebook (Google Colab)
-    - BERT from TF HUB [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(TF_HUB).ipynb) [[colab]](https://colab.research.google.com/drive/1_9zttTBbQaLDDAo8VbC9bgOKnw_vQNCf?usp=sharing)
-    - BERT from HuggingFace [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(HuggingFace).ipynb) [[colab]](https://colab.research.google.com/drive/1XE5HqqMUihxX3DD7gsejYRmv5aUDRCyG?usp=sharing)
+    - BERT from TF HUB [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(TF_HUB).ipynb) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_9zttTBbQaLDDAo8VbC9bgOKnw_vQNCf?usp=sharing)
+    - BERT from HuggingFace [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(HuggingFace).ipynb) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1XE5HqqMUihxX3DD7gsejYRmv5aUDRCyG?usp=sharing)
   - Local (AirFlow) `TODO`
   - GCP (KubeFlow) `TODO`
 - Documentation [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/tree/main/Documentation)
