@@ -14,7 +14,7 @@
 ---
 
 ### TODO list:
-- Experiment with data from different sources and formats (e.g. `CSV`, `TXT`, and `TFRecord`).
+- Also input data from `TFRecord` format source.
 - Store and load data using `GCS` to enable training with `TPU`.
 - Add more features to the data (e.g. length, is_question, and word_count), to improve `StatisticsGen` and `Evaluator` outputs.
 - Leverage `Pusher` and also deploy models for Tensorflow Lite and Tensorflow JS.
