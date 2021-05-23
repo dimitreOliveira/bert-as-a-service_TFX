@@ -13,8 +13,8 @@
 ### Content
 - Pipelines
   - Notebook (Google Colab)
-    - BERT from TF HUB [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(TF_HUB).ipynb) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_9zttTBbQaLDDAo8VbC9bgOKnw_vQNCf?usp=sharing)
-    - BERT from HuggingFace [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(HuggingFace).ipynb) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1XE5HqqMUihxX3DD7gsejYRmv5aUDRCyG?usp=sharing)
+    - BERT from TF HUB [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(TF_HUB).ipynb) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1XE5HqqMUihxX3DD7gsejYRmv5aUDRCyG?usp=sharing)
+    - BERT from HuggingFace [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/blob/main/Pipeline/Notebook%20(Google%20Colab)/BERT_as_a_service_TFX_Colab_(HuggingFace).ipynb) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1T1OmeCD2jB2QLz_1VhpeaTdfq77c0Hxm?usp=sharing)
   - Local (AirFlow) `TODO`
   - GCP (KubeFlow) `TODO`
 - Documentation [[link]](https://github.com/dimitreOliveira/bert-as-a-service_TFX/tree/main/Documentation)
@@ -39,6 +39,8 @@ The end-to-end [TFX](https://www.tensorflow.org/tfx) pipeline will cover most of
   - Validates the input data based on the `SchemaGen`'s schema.
 - `Transform` performs feature engineering on the dataset.
   - Input missing data and do basic data pre-processing.
+- `Tuner` uses `kerastuner` to perform hyperparameters tuning for the model.
+  - The optimal hyperparameters will be used by the `Trainer`
 - `Trainer` trains the model.
   - Train the custom pre-trained `BERT` model, this model also has a built-in text tokenizer.
 - `Resolver` performs model validation.
