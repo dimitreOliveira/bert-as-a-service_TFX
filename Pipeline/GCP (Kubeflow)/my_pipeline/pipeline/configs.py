@@ -1,5 +1,3 @@
-import os  # pylint: disable=unused-import
-
 # Pipeline name will be used to identify this pipeline.
 PIPELINE_NAME = 'my_pipeline'
 
@@ -27,13 +25,10 @@ GCS_BUCKET_NAME = GOOGLE_CLOUD_PROJECT + '-kubeflowpipelines-default'
 # This image will be automatically built by CLI if we use --build-image flag.
 PIPELINE_IMAGE = f'gcr.io/{GOOGLE_CLOUD_PROJECT}/{PIPELINE_NAME}'
 
-PREPROCESSING_FN = 'models.bert_aas_utils.preprocessing_fn'
-RUN_FN = 'models.bert_aas_utils.run_fn'
+PREPROCESSING_FN = 'models.transform_utils.preprocessing_fn'
+RUN_FN = 'models.train_utils.run_fn'
 
 TRAIN_NUM_STEPS = 10
 EVAL_NUM_STEPS = 5
-
-# Change this value according to your use cases.
 EVAL_ACCURACY_THRESHOLD = 0.01
-
 ENABLE_TUNNING = True

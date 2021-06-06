@@ -9,6 +9,7 @@ from pipeline import configs
 from pipeline import pipeline
 from tfx.orchestration.kubeflow import kubeflow_dag_runner
 from tfx.utils import telemetry_utils
+from tfx.proto import trainer_pb2
 
 # TFX pipeline produces many output files and metadata. All output data will be
 # stored under this OUTPUT_DIR.
@@ -37,7 +38,8 @@ DATA_PATH = 'gs://{}/bert-aas/data/'.format(configs.GCS_BUCKET_NAME)
 
 ROOT_PATH = os.path.join(os.path.expanduser("~"), "imported", 
                          configs.PIPELINE_NAME)
-MODULE_PATH = os.path.join(ROOT_PATH, 'pipeline', 'bert_aas_utils.py')
+TRANSFORM_MODULE_PATH = os.path.join(ROOT_PATH, 'pipeline', 'transform_utils.py')
+TRAIN_MODULE_PATH = os.path.join(ROOT_PATH, 'pipeline', 'train_utils.py')
 
 
 def run():
@@ -53,19 +55,24 @@ def run():
   runner_config = kubeflow_dag_runner.KubeflowDagRunnerConfig(
       kubeflow_metadata_config=metadata_config,
       tfx_image=configs.PIPELINE_IMAGE)
-#   pod_labels = kubeflow_dag_runner.get_default_pod_labels()
-#   pod_labels.update({telemetry_utils.LABEL_KFP_SDK_ENV: 'tfx-template'})
+  pod_labels = kubeflow_dag_runner.get_default_pod_labels()
+  pod_labels.update({telemetry_utils.LABEL_KFP_SDK_ENV: 'tfx-template'})
   kubeflow_dag_runner.KubeflowDagRunner(
-      config=runner_config, 
-#       pod_labels_to_attach=pod_labels
+      config=runner_config, pod_labels_to_attach=pod_labels
   ).run(
       pipeline.create_pipeline(
           pipeline_name=configs.PIPELINE_NAME,
           pipeline_root=PIPELINE_ROOT,
           data_path=DATA_PATH,
-          module_path=MODULE_PATH,
+          transform_module_path=TRANSFORM_MODULE_PATH,
+          train_module_path=TRAIN_MODULE_PATH,
+          train_args=trainer_pb2.TrainArgs(num_steps=configs.TRAIN_NUM_STEPS),
+          eval_args=trainer_pb2.EvalArgs(num_steps=configs.EVAL_NUM_STEPS),
+          eval_accuracy_threshold=configs.EVAL_ACCURACY_THRESHOLD,
+          serving_model_dir=SERVING_MODEL_DIR,
           enable_tuning=configs.ENABLE_TUNNING,
-      ))
+      )
+  )
 
 
 if __name__ == '__main__':

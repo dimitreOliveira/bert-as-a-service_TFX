@@ -14,11 +14,10 @@
 ---
 
 ### TODO list:
-- Also input data from `TFRecord` format source.
 - Store and load data using `GCS` to enable training with `TPU`.
 - Add more features to the data (e.g. length, is_question, and word_count), to improve `StatisticsGen` and `Evaluator` outputs.
 - Leverage `Pusher` and also deploy models for Tensorflow Lite and Tensorflow JS.
 - Develop a small application to serve and consume the deployed model.
 - Look into the possibilities to add unity tests as part of the pipeline.
 - Experiment with custom `TFX` components.
-- Experiment with other components (e.g. `BulkInferrer`, `Tuner`, and `InfraValidator`).
+- Experiment with other components (e.g. `BulkInferrer`).

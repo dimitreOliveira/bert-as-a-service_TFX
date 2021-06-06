@@ -6,65 +6,28 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import tensorflow_transform as tft
 
-from tfx_bsl.tfxio import dataset_options
 from tfx.components.trainer.fn_args_utils import FnArgs
 from tfx.components.tuner.component import TunerFnResult
-from tfx.components.trainer.fn_args_utils import DataAccessor
-
-# import os
-# os.system('pip install tensorflow_text')
-# import tensorflow_text as text
-from tfx.examples.bert.utils.bert_tokenizer_utils import BertPreprocessor
 
 
-_MODEL_PATH = 'https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/3'
+_MODEL_PATH = 'https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/4'
 _PREPROCESSOR_PATH = 'https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3'
 _FEATURE_KEY = 'review'
-_LABEL_KEY = 'sentiment'
-_LOWER_CASE = True
 _SEQ_LENGTH = 64
-_TRAIN_BATCH_SIZE = 32
-_EVAL_BATCH_SIZE = 32
+_TRAIN_BATCH_SIZE = 16
+_EVAL_BATCH_SIZE = 16
 _EPOCHS = 3
-_LEARNING_RATE = 1e-5
+
+# using LSTM model
+_EMBEDDING_UNITS = 32
+_HIDDEN_UNITS = 32
+_LSTM_UNITS = 32
+_VOCAB_SIZE = 8000
 
 
 def _gzip_reader_fn(filenames):
   """Small utility returning a record reader that can read gzip'ed files."""
   return tf.data.TFRecordDataset(filenames, compression_type='GZIP')
-
-def _fill_in_missing(x):
-  """Replace missing values in a SparseTensor.
-  Fills in missing values of `x` with '' or 0, and converts to a dense tensor.
-  Args:
-    x: A `SparseTensor` of rank 2.  Its dense shape should have size at most 1
-      in the second dimension.
-  Returns:
-    A rank 1 tensor where missing values of `x` have been filled in.
-  """
-  if not isinstance(x, tf.sparse.SparseTensor):
-    return x
-
-  default_value = '' if x.dtype == tf.string else 0
-  return tf.squeeze(
-      tf.sparse.to_dense(
-          tf.SparseTensor(x.indices, x.values, [x.dense_shape[0], 1]),
-          default_value),
-      axis=1)
-
-# TFX Transform will call this function.
-def preprocessing_fn(inputs):
-  """tf.transform's callback function for preprocessing inputs.
-  Args:
-    inputs: map from feature keys to raw not-yet-transformed features.
-  Returns:
-    Map from string feature key to transformed feature operations.
-  """
-#   trimmed_text = tf.strings.strip(inputs[_FEATURE_KEY])
-  return {
-      _FEATURE_KEY: _fill_in_missing(inputs[_FEATURE_KEY]),
-      'label': _fill_in_missing(inputs[_LABEL_KEY])
-  }
 
 # TFX Trainer will call this function.
 def _input_fn(file_pattern: List[Text],
@@ -178,6 +141,30 @@ def model_fn(hparams: kerastuner.HyperParameters) -> tf.keras.Model:
 
   return model
 
+def model_fn_temp(hparams: kerastuner.HyperParameters) -> tf.keras.Model:
+  """Creates a LSTM Keras model for classifying imdb data.
+  Reference: https://www.tensorflow.org/tutorials/text/text_classification_rnn
+  Returns:
+    A Keras Model.
+  """
+  model = tf.keras.Sequential([
+          tf.keras.layers.Embedding(_VOCAB_SIZE + 2,
+                                    _EMBEDDING_UNITS,
+                                    name=_FEATURE_KEY),
+          tf.keras.layers.Bidirectional(
+            tf.keras.layers.LSTM(_LSTM_UNITS, dropout=hparams.get('dropout'))
+          ),
+          tf.keras.layers.Dense(_HIDDEN_UNITS, activation='relu'),
+          tf.keras.layers.Dense(1, activation='sigmoid'),
+      ])
+
+  model.compile(optimizer=tf.keras.optimizers.Adam(hparams.get('learning_rate')),
+                loss=tf.keras.losses.BinaryCrossentropy(),
+                metrics=[tf.keras.metrics.BinaryAccuracy()])  
+  model.summary(print_fn=absl.logging.info)
+
+  return model
+
 def _get_hyperparameters() -> kerastuner.HyperParameters:
   """Returns hyperparameters for building Keras model."""
   hp = kerastuner.HyperParameters()
@@ -207,7 +194,8 @@ def tuner_fn(fn_args: FnArgs) -> TunerFnResult:
   # RandomSearch is a subclass of kerastuner.Tuner which inherits from
   # BaseTuner.
   tuner = kerastuner.RandomSearch(
-      model_fn,
+#       model_fn,
+      model_fn_temp, # using LSTM model
       max_trials=3,
       hyperparameters=_get_hyperparameters(),
       allow_new_entries=False,
@@ -271,7 +259,8 @@ def run_fn(fn_args: FnArgs):
 
   strategy = get_strategy()
   with strategy.scope():
-    model = model_fn(hparams)
+#     model = model_fn(hparams)
+    model = model_fn_temp(hparams) # using LSTM model
 
   tensorboard_callback = tf.keras.callbacks.TensorBoard(
       log_dir=fn_args.model_run_dir, 
