@@ -48,6 +48,7 @@ The end-to-end [TFX](https://www.tensorflow.org/tfx) pipeline will cover most of
 - `Resolver` performs model validation.
   - Resolve a model to be used as a baseline for model validation.
 - `Evaluator` performs deep analysis of the training results and helps you validate your exported models, ensuring that they are "good enough" to be pushed to production.
+- `InfraValidator` used as an early warning layer before pushing a model into production. The name "infra" validator came from the fact that it is validating the model in the actual model serving "infrastructure".
   - Evaluate the model's accuracy over the complete dataset and across different data slices, also evaluate new models against a baseline.
 - `Pusher` deploys the model on a serving infrastructure.
   - Export the model for serving if the new model improved over the baseline.
